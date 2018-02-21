@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500" rel="stylesheet">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  	<link href="https://fonts.googleapis.com/css?family=Bungee|Bungee+Hairline|Bungee+Shade" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="tictactoe.css" rel="stylesheet" />
+    <script src="tictactoefinal.js"></script>
+	<title>TicTacToe Much</title>
+</head>
+<body>
+	<!-- intro -->
+	<section id = "front">
+		<div id = "title">TicTacToe Much?</div>
+	</section>
+
+	<!-- user choose the setting -->
+	<section id = "load_option">
+		<div class = "title">With</div>
+		<div class = "human pick"><i class="far fa-handshake fa-spin"></i></div>
+		<div class = "ai pick"><i class="fab fa-android fa-spin"></i></div>
+	</section>
+
+	<!-- user choose X or O -->
+	<section id = "preference">
+		<div class = "title">I want</div>
+		<div class = "x xpick"><i class="fas fa-times"></i></div>
+		<div class = "o opick"><i class="fas fa-circle"></i></div>
+	</section>
+
+	<!-- load game pane -->
+	<section id = "load-game">
+		<section id = "alert_flip"> <!-- add reset div on hover <div id="reset"></div> -->
+			<div class = "winnerHTML"><span id="winner">Winner</span><span id="tie">Tie</span></div>
+			<div class = "x xturn"><i class="fas fa-times"></i></div>
+			<div class = "o oturn"><i class="fas fa-circle"></i></div>
+		</section>
+		<div id="game-board">
+			<div class="box" id="0"></div>
+			<div class="box" id="1"></div>
+			<div class="box" id="2"></div>
+			<div class="box" id="3"></div>
+			<div class="box" id="4"></div>
+			<div class="box" id="5"></div>
+			<div class="box" id="6"></div>
+			<div class="box" id="7"></div>
+			<div class="box" id="8"></div>
+		</div>
+		<div id = "another"><span id = "resetclick">Reset?</span><span id = "moreround">Another round?</span></div>
+	</section>
+
+</body>
+</html>

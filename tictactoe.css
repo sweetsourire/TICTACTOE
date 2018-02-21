@@ -1,0 +1,194 @@
+body {
+	font-family: 'Bungee Shade', cursive;
+	font-family: 'Bungee Hairline', cursive;
+	font-family: 'Bungee', cursive;
+	background-color: #ffe4e1;
+	margin: 50px;
+}
+
+section {
+	color: black;
+	height: 500px;
+	width: 500px;
+	display: grid;
+	grid-gap: 10px;
+	justify-content: center;
+	align-content: center;
+	padding: 10px;
+	margin: auto;
+}
+
+#front, #end {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+}
+
+#title:hover{
+	color: #ffd700;
+    cursor: pointer; 
+}
+
+#end:hover{
+	color: #ffd700;
+    cursor: pointer; 
+}
+
+#load_option {
+    font-size: 50px;
+	display: grid;
+    grid-template-columns: [col1-start] 150px [col2-start] 150px [col2-end];
+	grid-template-rows: [row1-start] 150px [row2-start] 150px [row2-end];
+}
+
+.title {
+	grid-column: col1-start / col2-end;
+    grid-row: row1-start / row2-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.human {
+	grid-column: col1-start / col2-start;
+    grid-row: row2-start / row2-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px
+}
+
+.ai {
+	grid-column: col2-start / col2-end;
+    grid-row: row2-start / row2-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-spin:hover {
+  animation: linear;
+}
+
+#preference {
+	font-size: 45px;
+	display: grid;
+    grid-template-columns: [col1-start] 150px [col2-start] 150px [col2-end];
+	grid-template-rows: [row1-start] 150px [row2-start] 150px [row2-end];
+}
+
+.title {
+	grid-column: col1-start / col2-end;
+    grid-row: row1-start / row2-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.x {
+	grid-column: col1-start / col2-start;
+    grid-row: row2-start / row2-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.o {
+	grid-column: col2-start / col2-end;
+    grid-row: row2-start / row2-end;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fa-circle {
+    font-size: 35px;
+}
+
+.pick {
+	margin-right: 40px;
+	margin-left: 40px;
+}
+
+.pick:hover, .xpick:hover, .opick:hover{
+	color: #ffd700;
+    cursor: pointer; 
+}
+
+
+#load-game {
+	height: 560px;
+	width: 360px;
+}
+
+#alert_flip {
+	font-size: 45px;
+	height: 120px;
+	width: 300px;
+	display: grid;
+    grid-template-columns: [col1-start] 180px [col2-start] 180px [col2-end];
+    grid-template-rows: [row1-start] 10px [row2-start] 130px [row2-end];
+}
+
+.winnerHTML {
+	font-size: 35px;
+	height: 25px;
+	color: #ffd700;
+	display: grid;
+	grid-column: col1-start / col2-end;
+    grid-row: [row1-start] 40px [row2-start];
+    display: flex;
+    justify-content: center;
+    align-content: top;
+}
+
+#winner {
+	display: none;
+}
+
+#tie {
+	display: none
+}
+
+.fliplight {
+	color: #ffd700;
+}
+
+#game-board {
+	height: 360px;
+	width: 360px;
+	margin: 0 auto;
+	display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr)
+}
+
+.box {
+	font-size: 45px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid black;
+	outline: 1.5px solid black;
+	cursor: pointer;
+}
+
+#another {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	grid-template-columns: col1-start / col2-end;
+	justify-content: center;
+	align-content: center;
+	font-size: 20px;
+	display: grid
+}
+
+#another:hover{
+	color: #ffd700;
+    cursor: pointer; 
+}
+
+#moreround {
+	display: none;
+}
