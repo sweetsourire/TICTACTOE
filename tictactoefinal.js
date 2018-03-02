@@ -8,6 +8,8 @@ let p1Turn = true
 let totalMove = 0
 //allow user's click
 let nextMove = true
+//winner found flag
+let containsWin = false
 
 //player objects
 let player1 = {
@@ -50,10 +52,10 @@ function calWinner(arr){//player's history
 	    [0, 4, 8],
 	    [2, 4, 6],
 	]
-	let containsWin = false //returns true or false. if true stops the loop and return announce
+	containsWin = false //returns true or false. if true stops the loop and return announce
 
 	for(let i = 0; i<winningIds.length && !containsWin; i++){
-		containsWin = calculate(array, winningIds[i]) 
+		containsWin = calculate(array, winningIds[i]) //this function returns stopGame()
 	}
 	return
 }
@@ -146,7 +148,7 @@ $('.opick').on('click', function(){
 	}
 
 	function flipLight(lightPlayer, darkPlayer){ //next and curr player
-		if(nextMove){
+		if(nextMove && !containsWin){
 			$('.'+lightPlayer.class).addClass('fliplight')
 			$('.'+darkPlayer.class).removeClass('fliplight')
 		}
@@ -199,14 +201,15 @@ $('.opick').on('click', function(){
       console.log('ai playset running')
       totalMove++
       p1Turn = !p1Turn
-      flipLight(player2, player1)
+      flipLight(player1, player2)
       //get empty boxes
       const MARKED_BOX = [...player1.history, ...player2.history].sort()
       const ID_ARRAY = [0,1,2,3,4,5,6,7,8] 
       const empty_box = ID_ARRAY.filter(x=>!MARKED_BOX.includes(x))
       const WHERE_TO = empty_box[Math.floor(Math.random()*empty_box.length)]
       $('#'+WHERE_TO).html(player2.mark)
-            player2.history.push(WHERE_TO)
+      player2.history.push(WHERE_TO)
+      calWinner(player2.history)
     }
 
     if(!aiPlay){
@@ -223,9 +226,10 @@ $('.opick').on('click', function(){
       if(moreMovesPossible($(this))){ //this responds p1's click. automate ai's click
         if(p1Turn){
 			makeMove($(this), player1, player2)
-			AIMarkSpot()
-		} 
-      }
+			} if(!p1Turn && nextMove) {
+				setTimeout(AIMarkSpot, 500)
+      		}
+      	}
     }
   })//END BOX FUNCTION
 
