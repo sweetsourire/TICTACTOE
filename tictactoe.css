@@ -89,7 +89,7 @@ section {
 .x {
 	grid-column: col1-start / col2-start;
     grid-row: row2-start / row2-end;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
 
@@ -98,7 +98,7 @@ section {
 .o {
 	grid-column: col2-start / col2-end;
     grid-row: row2-start / row2-end;
-    display: flex;
+    display: grid;
     justify-content: center;
     align-items: center;
 }
@@ -192,3 +192,23 @@ section {
 #moreround {
 	display: none;
 }
+
+@media screen and (max-width: 550px){
+  
+    #front, #load_option, #preference {
+      	transform: scale(0.8);
+      	transform-origin: 0 0;
+      	margin-left: -40px;
+    }
+
+    #alert_flip, #game-board {
+    	transform: scale(0.8);  	
+     	transform-origin: 0 0;
+    }
+
+    #another {
+    	transform-origin: 0 0;
+    	margin-left: -80px;
+    	margin-top: -50px;
+    }
+  }
