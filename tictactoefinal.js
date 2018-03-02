@@ -8,8 +8,6 @@ let p1Turn = true
 let totalMove = 0
 //allow user's click
 let nextMove = true
-//winner found flag
-let containsWin = false
 
 //player objects
 let player1 = {
@@ -52,10 +50,10 @@ function calWinner(arr){//player's history
 	    [0, 4, 8],
 	    [2, 4, 6],
 	]
-	containsWin = false //returns true or false. if true stops the loop and return announce
+	let containsWin = false //returns true or false. if true stops the loop and return announce
 
 	for(let i = 0; i<winningIds.length && !containsWin; i++){
-		containsWin = calculate(array, winningIds[i]) //this function returns stopGame()
+		containsWin = calculate(array, winningIds[i]) 
 	}
 	return
 }
@@ -148,7 +146,7 @@ $('.opick').on('click', function(){
 	}
 
 	function flipLight(lightPlayer, darkPlayer){ //next and curr player
-		if(nextMove && !containsWin){
+		if(nextMove){
 			$('.'+lightPlayer.class).addClass('fliplight')
 			$('.'+darkPlayer.class).removeClass('fliplight')
 		}
@@ -198,18 +196,21 @@ $('.opick').on('click', function(){
     }
 
     function AIMarkSpot(ai, nextPlayer){
-      console.log('ai playset running')
-      totalMove++
-      p1Turn = !p1Turn
-      flipLight(player1, player2)
-      //get empty boxes
-      const MARKED_BOX = [...player1.history, ...player2.history].sort()
-      const ID_ARRAY = [0,1,2,3,4,5,6,7,8] 
-      const empty_box = ID_ARRAY.filter(x=>!MARKED_BOX.includes(x))
-      const WHERE_TO = empty_box[Math.floor(Math.random()*empty_box.length)]
-      $('#'+WHERE_TO).html(player2.mark)
-      player2.history.push(WHERE_TO)
-      calWinner(player2.history)
+		console.log('ai playset running')
+		totalMove++
+		p1Turn = !p1Turn
+		//get empty boxes
+		const MARKED_BOX = [...player1.history, ...player2.history].sort()
+		const ID_ARRAY = [0,1,2,3,4,5,6,7,8] //a
+		const empty_box = ID_ARRAY.filter(x=>!MARKED_BOX.includes(x))
+		const WHERE_TO = empty_box[Math.floor(Math.random()*empty_box.length)]
+		$('#'+WHERE_TO).html(player2.mark)
+		    player2.history.push(WHERE_TO)
+		calWinner(player2.history)
+		if(nextMove){
+			flipLight(player1, player2)
+		}
+		console.log(nextMove, 'MARKED_BOX: ', MARKED_BOX, 'empty_box array: ', empty_box, 'WHERE_TO: ', WHERE_TO)
     }
 
     if(!aiPlay){
@@ -221,15 +222,16 @@ $('.opick').on('click', function(){
 			  makeMove($(this), player2, player1)
 			}
 		}
-	} else {
+	    } else {
 //AI SET
       if(moreMovesPossible($(this))){ //this responds p1's click. automate ai's click
         if(p1Turn){
 			makeMove($(this), player1, player2)
-			} if(!p1Turn && nextMove) {
-				setTimeout(AIMarkSpot, 500)
-      		}
-      	}
+			if(!p1Turn){
+				setTimeout(AIMarkSpot, 300)
+			}
+		} 
+      }
     }
   })//END BOX FUNCTION
 
