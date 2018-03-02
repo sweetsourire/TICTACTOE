@@ -80,6 +80,7 @@ function stopGame(){
 }
 
 function tie(){
+	nextMove = false
 	$('#tie').css('display', 'grid')
 	$('.p1, .p2').removeClass('fliplight')
 	$('#resetclick').css('display', 'none')
@@ -184,15 +185,15 @@ $('.opick').on('click', function(){
 
     //mark user's move
     function makeMove(box, currPlayer, nextPlayer){ //next player is to flip light
-      totalMove++
-      currPlayer.history.push(parseInt(boxId))
-      box.html(currPlayer.mark)
-      p1Turn = !p1Turn
-      calWinner(currPlayer.history)
-      flipLight(nextPlayer, currPlayer)
-      if(!p1Turn && totalMove == 9 && nextMove){
-        return tie()
-      }
+		totalMove++
+		currPlayer.history.push(parseInt(boxId))
+		box.html(currPlayer.mark)
+		p1Turn = !p1Turn
+		calWinner(currPlayer.history)
+		flipLight(nextPlayer, currPlayer)
+		if(!p1Turn && totalMove == 9 && nextMove){
+			return tie()
+		}
     }
 
     function AIMarkSpot(ai, nextPlayer){
@@ -205,7 +206,7 @@ $('.opick').on('click', function(){
 		const empty_box = ID_ARRAY.filter(x=>!MARKED_BOX.includes(x))
 		const WHERE_TO = empty_box[Math.floor(Math.random()*empty_box.length)]
 		$('#'+WHERE_TO).html(player2.mark)
-		    player2.history.push(WHERE_TO)
+		player2.history.push(WHERE_TO)
 		calWinner(player2.history)
 		if(nextMove){
 			flipLight(player1, player2)
@@ -227,8 +228,9 @@ $('.opick').on('click', function(){
       if(moreMovesPossible($(this))){ //this responds p1's click. automate ai's click
         if(p1Turn){
 			makeMove($(this), player1, player2)
-			if(!p1Turn){
+			if(!p1Turn && nextMove){
 				setTimeout(AIMarkSpot, 300)
+
 			}
 		} 
       }
